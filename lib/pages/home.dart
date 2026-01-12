@@ -180,7 +180,7 @@ ClipRRect(
                                       collapsedHeight: headerBarSize,
                                       elevation: 6,
                                       shadowColor: Color.fromARGB(255, 0, 0, 0),
-                                      foregroundColor: const Color.fromARGB(244, 255, 0, 0),
+                                      foregroundColor: const Color.fromARGB(0, 255, 0, 0),
                                       flexibleSpace:  LayoutBuilder(
                                                                     builder: (BuildContext context, BoxConstraints constraints) {
                                             top = constraints.biggest.height;

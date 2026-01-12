@@ -57,8 +57,9 @@ class MainFlutterWindow: BitsdojoWindow /*NSWindow*/ {
 
       super.awakeFromNib()
 
-       NotificationCenter.default.addObserver(self, selector: #selector(willEnterFullScreen(_:)), name: NSWindow.willEnterFullScreenNotification, object: self)
-    NotificationCenter.default.addObserver(self, selector: #selector(willExitFullScreen(_:)), name: NSWindow.didExitFullScreenNotification, object: self)
+    NotificationCenter.default.addObserver(self, selector: #selector(willEnterFullScreen(_:)), name: NSWindow.willEnterFullScreenNotification, object: self)
+    // NotificationCenter.default.addObserver(self, selector: #selector(willExitFullScreen(_:)), name: NSWindow.willExitFullScreenNotification, object: self)
+    NotificationCenter.default.addObserver(self, selector: #selector(didExitFullScreen(_:)), name: NSWindow.didExitFullScreenNotification, object: self)
   }
 
 
@@ -71,7 +72,22 @@ class MainFlutterWindow: BitsdojoWindow /*NSWindow*/ {
     // self.styleMask.insert(.fullSizeContentView)
   }
 
-  @objc func willExitFullScreen(_ notification: Notification) {
+  // @objc func willExitFullScreen(_ notification: Notification) {
+  //   // Restore toolbar and title visibility when exiting fullscreen
+  //   // self.titleVisibility = .visible
+  //   // Keep titlebar transparent if desired; comment out if not
+  //   // self.titlebarAppearsTransparent = true
+  //   let secondsToDelay = 0.01
+  //   DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
+  //       // Code to be executed after the delay on the main thread
+  //       self.toolbar?.isVisible = true
+  //       print("Delayed code executed after \(secondsToDelay) seconds")
+  //   }
+      
+
+  //   }
+
+  @objc func didExitFullScreen(_ notification: Notification) {
     // Restore toolbar and title visibility when exiting fullscreen
     // self.titleVisibility = .visible
     // Keep titlebar transparent if desired; comment out if not

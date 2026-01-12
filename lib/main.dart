@@ -7,15 +7,15 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:flutter/rendering.dart';
-// import 'package:flutter_acrylic/flutter_acrylic.dart';
-// import 'package:flutter_acrylic/widgets/transparent_macos_sidebar.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
+import 'package:flutter_acrylic/widgets/transparent_macos_sidebar.dart';
 import 'package:gtk/gtk.dart';
 import 'package:gtk_theme_fl/gtk_theme_fl.dart';
 // import 'package:handy_window/handy_window.dart';
 // import 'package:libadwaita_searchbar/libadwaita_searchbar.dart';
 // import 'package:macos_ui/macos_ui.dart';
-import 'package:macos_window_utils/macos_window_utils.dart';
-import 'package:macos_window_utils/widgets/transparent_macos_sidebar.dart';
+// import 'package:macos_window_utils/macos_window_utils.dart';
+// import 'package:macos_window_utils/widgets/transparent_macos_sidebar.dart';
 import 'package:provider/provider.dart';
 import 'src/headerbar_sizes.dart';
 import 'package:sharing_option/pages/config.dart';
@@ -85,10 +85,10 @@ if (isWindows||isMacOS||isLinux) {
   
   runApp(const MyApp());
   if (isMacOS) {    
-    await WindowManipulator.initialize();
-    WindowManipulator.enableFullSizeContentView();
-      WindowManipulator.hideTitle();
-      WindowManipulator.makeTitlebarTransparent();
+    await Window.initialize();
+    Window.enableFullSizeContentView();
+      Window.hideTitle();
+      Window.makeTitlebarTransparent();
     // doWhenWindowReady(() {
     //   // Window.setEffect(
     //   //       effect: WindowEffect.windowBackground,
@@ -422,18 +422,13 @@ void didChangeDependencies() {
         resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         extendBody: true,
-        backgroundColor: const Color.fromARGB(174, 200, 42, 42),
+        backgroundColor: const Color.fromARGB(0, 200, 42, 42),
         body: 
         
           Stack(
             alignment: Alignment(-1, -1),
             children: [
-              Container(color: baseColor,),              
-              AnimatedContainer(
-                curve: Curves.fastLinearToSlowEaseIn,
-                duration: Duration(milliseconds: 400),
-    
-              ),
+              Container(color: baseColor,),
               AnimatedPadding(
                 duration: Duration(milliseconds: 400),
                 curve: Curves.fastLinearToSlowEaseIn,
@@ -462,8 +457,8 @@ void didChangeDependencies() {
                     MainPage(appBarColor: isLinux?baseColor:Colors.black,),
                     ColoredBox(color: Colors.blue),
                     ColoredBox(color: Colors.purple),
-                    ConfigPage(),
-                    StartPage()
+                    // ConfigPage(),
+                    // StartPage()
                   ],
                 ),
               ),
@@ -493,7 +488,7 @@ void didChangeDependencies() {
                 child: Visibility(
                   visible: 
                   // (isLinux||isMacOS||isWindows||
-                  ((MediaQuery.sizeOf(context).width>700&&isAndroid)||(MediaQuery.sizeOf(context).width>700&&isIOS))&&
+                  (!(MediaQuery.sizeOf(context).width<700&&(isAndroid||isIOS)))&&
                   !_hideSidebar,
                   child: YaruTitleBarGestureDetector(
                     onSecondaryTap: (){print(gtkValue);},
@@ -584,17 +579,17 @@ void didChangeDependencies() {
                                         minWidth: 26,
                                         height: 40,
                                         onLongPress: () {
-                                          WindowManipulator.showCloseButton();
-                                                  WindowManipulator.showMiniaturizeButton();
-                                                  WindowManipulator.showZoomButton();
+                                          Window.showCloseButton();
+                                                  Window.showMiniaturizeButton();
+                                                  Window.showZoomButton();
                                           _setOverlaysVisible(true);
                                         },
                                         onPressed: () async{
                                           
                                       
-                                                  WindowManipulator.hideCloseButton();
-                                                  WindowManipulator.hideMiniaturizeButton();
-                                                  WindowManipulator.hideZoomButton();
+                                                  Window.hideCloseButton();
+                                                  Window.hideMiniaturizeButton();
+                                                  Window.hideZoomButton();
                                                   
                                                   // setState(() {
                                                   //   _hideSidebar = true;
@@ -711,7 +706,9 @@ void didChangeDependencies() {
                               // ),),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: SearchBar()
+                                child: SizedBox(
+                                  height: 40,
+                                  child: SearchBar())
                               ),
                               SidebarCtrls(pageController: currentPageController,page: 0,currentPage: _pageIndex,icon: Icon(FluentIcons.home_20_regular,size: 20),filledIcon: Icon(FluentIcons.home_16_filled,size: 20,),extendedSidebar: (_extendSidebarSmall&&MediaQuery.sizeOf(context).width<800)||(MediaQuery.sizeOf(context).width>=800&&_extendSidebarLarge),text: 'Home',),
                                   SidebarCtrls(pageController: currentPageController,page: 1,currentPage: _pageIndex,icon: Icon(FluentIcons.music_note_1_20_regular,size: 20,),filledIcon: Icon(FluentIcons.music_note_1_20_filled,size: 20),extendedSidebar: (_extendSidebarSmall&&MediaQuery.sizeOf(context).width<800)||(MediaQuery.sizeOf(context).width>=800&&_extendSidebarLarge),text: 'Music',),

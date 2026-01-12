@@ -115,7 +115,7 @@ class _MyWidgetState extends State<StartPage> {
                           collapsedHeight: 50,
                           
                           elevation: 3,
-                          foregroundColor: const Color.fromARGB(244, 255, 0, 0),
+                          foregroundColor: const Color.fromARGB(0, 255, 0, 0),
                           stretchTriggerOffset: 100.0,
                           expandedHeight: 80.0,
                           flexibleSpace: ClipRRect(
