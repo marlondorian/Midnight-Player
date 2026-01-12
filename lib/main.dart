@@ -413,7 +413,7 @@ void didChangeDependencies() {
   // (recreating controllers each build can leak/allocate resources repeatedly).
   final PageController currentPageController = _pageController;
   // Read headerbar sizes from provider so widgets rebuild on native updates
-  final double leftHeaderWidth = 200;
+  final double leftHeaderWidth = context.select((HeaderbarSizes h) => h.left);
   // context.select((HeaderbarSizes h) => h.left);
     
            
@@ -583,6 +583,7 @@ void didChangeDependencies() {
                                                   Window.showMiniaturizeButton();
                                                   Window.showZoomButton();
                                           _setOverlaysVisible(true);
+                                          print (leftHeaderWidth);
                                         },
                                         onPressed: () async{
                                           
