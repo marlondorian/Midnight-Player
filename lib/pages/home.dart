@@ -352,7 +352,7 @@ ClipRRect(
                                           padding: EdgeInsets.only(top:0),
                                           decoration: BoxDecoration(
                                           borderRadius: BorderRadius.only(topLeft: Radius.circular(9)),
-                                          color: blurRadius!=0&&isWindows ?const Color.fromARGB(88, 40, 40, 40):Colors.transparent),
+                                          color: blurRadius!=0&&isWindows ?Theme.of(context).brightness==Brightness.dark? const Color.fromARGB(47, 57, 57, 57):const Color.fromARGB(65, 255, 255, 255):Colors.transparent),
                                         child: Padding(
                                           padding: EdgeInsetsGeometry.only(top: MediaQuery.of(context).padding.top,bottom: MediaQuery.of(context).padding.bottom),
                                           child: Column(

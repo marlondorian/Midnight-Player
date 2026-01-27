@@ -216,7 +216,7 @@ void didChangeDependencies() {
     
 
                 SizedBox(
-                    width: 48,
+                    width: 50,
                     height: widget.headerSize,
                     child: WindowCaptionButton.minimize(
                       brightness: Theme.of(context).brightness,
@@ -258,13 +258,19 @@ void didChangeDependencies() {
                 //       ),
                 //     ),
                 //   ),
-                  
 
-                  SizedBox(width: 48, height: widget.headerSize, child: FutureBuilder<bool>(
+                  SizedBox(
+                    width: 50,
+                    height: widget.headerSize,
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      children: [
+                        SizedBox(width: 48, height: widget.headerSize, child: FutureBuilder<bool>(
                     future: windowManager.isMaximized(),
                     builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                       if (snapshot.data == true) {
                         return SnapLayoutsButton.unmaximize(
+                          enabled: true,
                           brightness: Theme.of(context).brightness,
                           onPressed: () {
                             windowManager.unmaximize();
@@ -272,6 +278,7 @@ void didChangeDependencies() {
                         );
                       }
                       return SnapLayoutsButton.maximize(
+                        enabled: true,
                         brightness: Theme.of(context).brightness,
                         onPressed: () {
                           windowManager.maximize();
@@ -279,6 +286,45 @@ void didChangeDependencies() {
                       );
                     },
                   ),),
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     color: Colors.black,
+                        //     borderRadius: BorderRadius.circular(4),
+                        //   ),
+                          
+                        //   height: 28,
+                        //   // child: ClipRRect(
+                        //   //   clipBehavior: Clip.hardEdge,
+                        //   //   child: SnapLayoutsButton(
+                        //   //     brightness: Brightness.dark,
+                        //   //   ),
+                        //   // ),
+                        // ),
+                      ],
+                    ),
+                  ),
+
+                  // SizedBox(width: 38, height: widget.headerSize, child: FutureBuilder<bool>(
+                  //   future: windowManager.isMaximized(),
+                  //   builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                  //     if (snapshot.data == true) {
+                  //       return SnapLayoutsButton.unmaximize(
+                  //         enabled: true,
+                  //         brightness: Theme.of(context).brightness,
+                  //         onPressed: () {
+                  //           windowManager.unmaximize();
+                  //         },
+                  //       );
+                  //     }
+                  //     return SnapLayoutsButton.maximize(
+                  //       enabled: true,
+                  //       brightness: Theme.of(context).brightness,
+                  //       onPressed: () {
+                  //         windowManager.maximize();
+                  //       },
+                  //     );
+                  //   },
+                  // ),),
 
                   // SizedBox(
                   //   width: 48,
@@ -358,7 +404,7 @@ void didChangeDependencies() {
                       child: AnimatedContainer(
                         alignment: Alignment(0, 0),
                         duration: const Duration(milliseconds: 70),
-                        width: 48,
+                        width: 50,
                         height: widget.headerSize,
                         color: const Color.fromARGB(255, 206, 29, 16).withAlpha(_hoverGtkCloseBg),
                         child: ColorFiltered( 

@@ -17,6 +17,7 @@ import 'package:gtk_theme_fl/gtk_theme_fl.dart';
 // import 'package:macos_window_utils/macos_window_utils.dart';
 // import 'package:macos_window_utils/widgets/transparent_macos_sidebar.dart';
 import 'package:provider/provider.dart';
+import 'package:snap_layouts/snap_layouts.dart';
 import 'src/headerbar_sizes.dart';
 import 'package:sharing_option/pages/config.dart';
 import 'package:sharing_option/pages/start.dart';
@@ -75,6 +76,8 @@ if (isWindows||isMacOS||isLinux) {
   WidgetsFlutterBinding.ensureInitialized();
   // Must add this line.
   await windowManager.ensureInitialized();
+  
+  await Window.initialize();
   WindowOptions windowOptions = WindowOptions(
     minimumSize: Size(500, 450),
     size: Size(800, 600),
@@ -82,13 +85,17 @@ if (isWindows||isMacOS||isLinux) {
     backgroundColor: Colors.transparent,
   );
 }
+if (isWindows) {
+  await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
+}
   
   runApp(const MyApp());
   if (isMacOS) {    
-    await Window.initialize();
     Window.enableFullSizeContentView();
       Window.hideTitle();
       Window.makeTitlebarTransparent();
+
+      
     // doWhenWindowReady(() {
     //   // Window.setEffect(
     //   //       effect: WindowEffect.windowBackground,
@@ -100,7 +107,10 @@ if (isWindows||isMacOS||isLinux) {
     // });
     
   }
- if (isWindows||isLinux) { doWhenWindowReady(() {
+ if (isWindows||isLinux) { 
+  
+  
+  doWhenWindowReady(() {
     final win = appWindow;
     const initialSize = Size(800, 600);
     win.minSize = Size(500, 450);
@@ -112,6 +122,7 @@ if (isWindows||isMacOS||isLinux) {
     }
     
   });
+  Window.hideWindowControls;
   
 }
 }
@@ -131,7 +142,7 @@ class _MyAppState extends State<MyApp> with WindowListener{
   @override
   void initState() {
     super.initState();
-   
+    Window.hideWindowControls;
     initPlatformState();
   windowManager.addListener(this);
   }
@@ -165,6 +176,8 @@ class _MyAppState extends State<MyApp> with WindowListener{
       // Ensure the titlebar is transparent when entering fullscreen
       // Window.makeTitlebarTransparent();
       // Window.hideTitle();
+      
+
     }
     print('MaximizadoMiamol');
   }
@@ -324,13 +337,13 @@ void didChangeDependencies() {
   super.didChangeDependencies();
   // Get the brightness. 
   initPlatformState();
-  // if (isWindows) {
-  //       Window.setEffect(
-  //     effect: WindowEffect.acrylic,
-  //     dark: Theme.of(context).brightness == Brightness.dark,
-  //     );
+  if (isWindows) {
+        Window.setEffect(
+      effect: WindowEffect.tabbed,
+      dark: Theme.of(context).brightness == Brightness.dark,
+      );
 
-  //    }
+     }
   
 }
 
@@ -388,7 +401,7 @@ void didChangeDependencies() {
   Widget build(BuildContext context) {
     bgColor = Theme.of(context).canvasColor;
     baseColor = Theme.of(context).cardColor;
-    if (isMacOS) {
+    if (isMacOS||isWindows) {
       bgColor = Colors.transparent;
       baseColor = Colors.transparent;
     }
@@ -568,6 +581,7 @@ void didChangeDependencies() {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
+                                    
                                     Tooltip(
                                       message: 'Hide sidebar',
                                       child: MaterialButton(
@@ -578,6 +592,7 @@ void didChangeDependencies() {
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10))),
                                         minWidth: 26,
                                         height: 40,
+                                        
                                         onLongPress: () {
                                           Window.showCloseButton();
                                                   Window.showMiniaturizeButton();
@@ -586,6 +601,8 @@ void didChangeDependencies() {
                                           print (leftHeaderWidth);
                                         },
                                         onPressed: () async{
+                                          Window.hideWindowControls;
+                                          
                                           
                                       
                                                   Window.hideCloseButton();
@@ -735,7 +752,7 @@ void didChangeDependencies() {
               ),
                         // isAndroid||kIsWeb 
                         // ?Padding(padding: EdgeInsets.all(0)) :
-                        // RightWindowButtons(headerSize: 46,),
+                        RightWindowButtons(headerSize: 46,),
                         // isAndroid||kIsWeb 
                         // ?Padding(padding: EdgeInsets.all(0)) :LeftWindowButtons(),
     
