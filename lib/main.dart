@@ -40,26 +40,6 @@ bool isMacOS = false;
 bool isAndroid = false;
 bool isIOS = false;
 
-// if (kIsWeb) {
-//   isWindows = Platform.isWindows;
-//   isLinux = Platform.isLinux;
-//   isMacOS = Platform.isMacOS;
-//   isAndroid = Platform.isAndroid;
-//   isIOS = Platform.isIOS;
-// } else {
-//   if (defaultTargetPlatform == TargetPlatform.windows) {
-//     isWindows = true;
-//   } else if (defaultTargetPlatform == TargetPlatform.linux) {
-//     isLinux = true;
-//   } else if (defaultTargetPlatform == TargetPlatform.macOS) {
-//     isMacOS = true;
-//   } else if (defaultTargetPlatform == TargetPlatform.android) {
-//     isAndroid = true;
-//   } else if (defaultTargetPlatform == TargetPlatform.iOS) {
-//     isIOS = true;
-//   }
-// }
-
 Color baseColor = const Color.fromARGB(255, 21, 15, 31).withAlpha(0);
 Color bgColor = const Color.fromARGB(255, 32, 22, 48).withAlpha(0);
 
@@ -655,61 +635,22 @@ void didChangeDependencies() {
                                   ],
                                 ),
                               ),
-                              // InkWell(
-                              //   onTap: () {
-                                  
-                              //     showDialog(
-                                    
-                              //       context: context,
-                              //       barrierColor: const Color.fromARGB(0, 0, 0, 0),
-                              //       builder:
-                              //         (BuildContext context) => TapRegion(
-                              //           onTapOutside: (event) => setState(() {_searchFieldActive = false;}),
-                              //           child: Stack(
-                              //             alignment: Alignment(0,0),
-                              //             children: [
-                              //               Padding(padding: EdgeInsets.all(20),
-                              //                 child: ClipRRect(
-                              //                   borderRadius: BorderRadius.circular(15),
-                              //                   clipBehavior: Clip.hardEdge,
-                              //                   child:BackdropFilter(filter:ImageFilter.compose(outer:ImageFilter.blur(sigmaX:30, sigmaY:30), inner: ColorFilter.srgbToLinearGamma() ),blendMode: BlendMode.src,child:Container(
-                                                  
-                                                  
-                              //                     decoration: BoxDecoration(
-                              //                     color: isWindows 
-                              //                       ?(Theme.of(context).brightness == Brightness.dark 
-                              //                         ?const Color.fromARGB(255, 32, 32, 32)
-                              //                         :const Color.fromARGB(255, 243, 243, 243)).withAlpha(150)
-                              //                         :Color.fromARGB(0, 0, 0, 0),
-                              //                     borderRadius: BorderRadius.circular(15),
-                              //                   ),
-                              //                     constraints: BoxConstraints(maxWidth: 600,maxHeight: 700,minHeight: 0,minWidth: 0),
-                                                  
-                              //                   ),
-                              //                                                                     ),
-                              //                 ),
-                              //               ),
-                              //             ],
-                              //           ),
-                              //         )
-                              //     );
-                              //     setState(() {_searchFieldActive = true;});
-                              //   },
-                              //   mouseCursor: SystemMouseCursors.text,
-                              //   child: Container(
-                              //     margin: EdgeInsets.all(3),
-                              //     width: 30,
-                              //     height: 35,
-                              //     decoration: BoxDecoration(
-                              //       color: const Color.fromARGB(35, 130, 130, 130),
-                                            
-                              //     ),
-                              // ),),
+                              
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: SizedBox(
                                   height: 40,
-                                  child: SearchBar())
+                                  child: SearchBar(
+                                    leading: Padding(
+                                      padding: const EdgeInsets.all(6.0),
+                                      child: Icon(FluentIcons.search_16_regular,size: 16,),
+                                    ),
+                                    constraints: BoxConstraints(
+                                      minHeight: 10,
+                                    ),
+                                    shape: WidgetStatePropertyAll(
+                                      
+                                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),)),)
                               ),
                               SidebarCtrls(pageController: currentPageController,page: 0,currentPage: _pageIndex,icon: Icon(FluentIcons.home_20_regular,size: 20),filledIcon: Icon(FluentIcons.home_16_filled,size: 20,),extendedSidebar: (_extendSidebarSmall&&MediaQuery.sizeOf(context).width<800)||(MediaQuery.sizeOf(context).width>=800&&_extendSidebarLarge),text: 'Home',),
                                   SidebarCtrls(pageController: currentPageController,page: 1,currentPage: _pageIndex,icon: Icon(FluentIcons.music_note_1_20_regular,size: 20,),filledIcon: Icon(FluentIcons.music_note_1_20_filled,size: 20),extendedSidebar: (_extendSidebarSmall&&MediaQuery.sizeOf(context).width<800)||(MediaQuery.sizeOf(context).width>=800&&_extendSidebarLarge),text: 'Music',),
