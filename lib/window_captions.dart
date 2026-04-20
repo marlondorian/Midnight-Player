@@ -8,12 +8,13 @@ import 'package:gtk/gtk.dart';
 import 'package:gtk_theme_fl/gtk_theme_fl.dart';
 //import 'package:macos_ui/macos_ui.dart';
 import 'package:provider/provider.dart';
+import 'package:sharing_option/configs/config_values.dart';
+import 'package:sharing_option/constants/current_platform.dart';
 import 'package:snap_layouts/snap_layouts.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'package:xdg_icons/xdg_icons.dart';
 //import 'package:yaru/yaru.dart';
-import 'main.dart';
 import 'yaru_title_bar_gesture_detector.dart';
 
 

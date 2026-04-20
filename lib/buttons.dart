@@ -1,12 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
+import 'package:sharing_option/constants/current_platform.dart';
 
-
-bool isWindows = true;
-bool isLinux = Platform.isLinux;
-bool isMacOS = Platform.isMacOS;
-bool isAndroid = Platform.isAndroid;
-bool isIOS = Platform.isIOS;
 
 
 class SidebarCtrls extends StatefulWidget {
