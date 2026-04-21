@@ -1,17 +1,13 @@
-import 'dart:io' show Platform;
 import 'dart:ui';
-import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-// import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_acrylic/flutter_acrylic.dart';
+import 'package:window_manager/window_manager.dart';
+
 // import 'package:gtk/gtk.dart';
 import 'package:gtk_theme_fl/gtk_theme_fl.dart';
 import 'package:sharing_option/configs/config_values.dart';
 import 'package:sharing_option/constants/current_platform.dart';
+
 // import 'package:handy_window/handy_window.dart';
 // import 'package:libadwaita_searchbar/libadwaita_searchbar.dart';
 // import 'package:macos_ui/macos_ui.dart';
@@ -188,7 +184,7 @@ class _MainPageState extends State<MainPage> {
                           title: YaruTitleBarGestureDetector(
                             onDrag: (details) {
                               if (isLinux || isMacOS || isWindows) {
-                                appWindow.startDragging();
+                                WindowManager.instance.startDragging();
                               }
                             },
                             child: Column(

@@ -1,19 +1,24 @@
 PODS:
+  - adaptive_platform_ui (0.1.0):
+    - Flutter
   - Flutter (1.0.0)
   - package_info_plus (0.4.5):
     - Flutter
-  - system_theme (0.0.1):
+  - system_theme (3.2.0):
     - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
+  - adaptive_platform_ui (from `.symlinks/plugins/adaptive_platform_ui/ios`)
   - Flutter (from `Flutter`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - system_theme (from `.symlinks/plugins/system_theme/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
+  adaptive_platform_ui:
+    :path: ".symlinks/plugins/adaptive_platform_ui/ios"
   Flutter:
     :path: Flutter
   package_info_plus:
@@ -24,10 +29,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  adaptive_platform_ui: f54f620666d1797636f9ef06f49137ef2cc13611
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   package_info_plus: 566e1b7a2f3900e4b0020914ad3fc051dcc95596
-  system_theme: a94f91f49eeb97cfa768c7d5a9b2f6aa51b00494
-  url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
+  system_theme: 7dba6fe199562b2ee5acbd336d280f0d22743e64
+  url_launcher_ios: 7a95fa5b60cc718a708b8f2966718e93db0cef1b
 
 PODFILE CHECKSUM: 3c63482e143d1b91d2d2560aee9fb04ecc74ac7e
 

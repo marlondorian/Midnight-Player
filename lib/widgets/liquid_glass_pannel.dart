@@ -82,7 +82,7 @@ class _LiquidGlassPannelState extends State<LiquidGlassPannel>
     Color macosButtonBorderColor =
         widget.borderColor ?? (Theme.of(context).brightness == Brightness.dark
         ? const Color.fromARGB(30, 153, 153, 153)
-        : const Color.fromARGB(176, 255, 255, 255));
+        : const Color.fromARGB(219, 255, 255, 255));
 
     return widget.visible ? LiquidGlassAttempt(
         isFocused: isFocused,
@@ -198,8 +198,8 @@ class _LiquidGlassPannelState extends State<LiquidGlassPannel>
         ),
       ),
     )
-  
-  : SizedBox( child: widget.child,);
+    : SizedBox(child: widget.child,)
+  ;
   
   }
 }
@@ -342,8 +342,7 @@ class LiquidGlassAttempt extends StatelessWidget {
                 ),
             child: BackdropFilter(
                 filter: .blur(sigmaX: 100, sigmaY: 100),
-                
-                child: child),
+                ),
               ),
             ),
           ),
@@ -365,7 +364,7 @@ class LiquidGlassAttempt extends StatelessWidget {
                       ),
               ),
           child: BackdropFilter(
-              filter: .blur(sigmaX: blurred? 6 : 0, sigmaY: blurred? 6 : 0),
+              filter: .blur(sigmaX: blurred? 4 : 0, sigmaY: blurred? 4 : 0),
               
               child: child),)
       ],

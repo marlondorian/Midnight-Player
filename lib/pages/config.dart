@@ -1,3 +1,4 @@
+import 'package:adaptive_platform_ui/adaptive_platform_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sharing_option/yaru_title_bar_gesture_detector.dart';
@@ -19,6 +20,7 @@ class ConfigPage extends StatelessWidget {
                                   Container(
                                     color: Colors.green,
                                   ),
+                                  
                                   Container( height: 44,),
                                   ColorFiltered( colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcATop),child: SizedBox()),
                                     Container(
@@ -28,6 +30,12 @@ class ConfigPage extends StatelessWidget {
                                     Container(
                                       color: Colors.blue,
                                       height: 400,
+                                    ),
+                                    AdaptiveSwitch(
+                                      value: true,
+                                      onChanged: (value) {
+                                        print('Switch: $value');
+                                      },
                                     ),
                                     Container(
                                       color: const Color.fromARGB(255, 20, 212, 49),

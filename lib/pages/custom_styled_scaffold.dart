@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:gtk_theme_fl/gtk_theme_fl.dart';
 import 'package:sharing_option/configs/config_values.dart';
 import 'package:sharing_option/constants/current_platform.dart';
+import 'package:sharing_option/pages/home.dart';
 import 'package:sharing_option/widgets/toolbar_themed_buttons.dart';
 // import 'package:handy_window/handy_window.dart';
 // import 'package:libadwaita_searchbar/libadwaita_searchbar.dart';
@@ -239,7 +240,12 @@ class _CustomStyledScaffoldState extends State<CustomStyledScaffold> {
                                             message: 'Collapse sidebar',
                                             child: PlatformThemedToolbarButton(
                                               child: Icon(Icons.menu),
-                                              onPressed: () => print(operatingSystemVersion),
+                                              onPressed: () { print(operatingSystemVersion);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(builder: (context) => const MainPage()),);
+                                              
+                                              },
                                             ),
                                           ),
                                         ),

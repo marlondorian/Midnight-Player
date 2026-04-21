@@ -56,6 +56,8 @@ dependencies:
   web_smooth_scroll: ^2.0.0
   sheet: ^1.0.0
   macos_window_utils: ^1.9.0
+  liquid_glass_easy: ^1.1.1
+  adaptive_platform_ui: ^0.1.104
 
 dev_dependencies:
   flutter_test:

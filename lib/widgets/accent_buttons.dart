@@ -71,36 +71,24 @@ class _TahoeAccentButtonState extends State<TahoeAccentButton> with WindowListen
     Color buttonBackgroundColor = widget.backgroundColor ?? Theme.of(context).colorScheme.primary;
     Color focusedColor = Theme.of(context).brightness == Brightness.dark ? const Color.fromARGB(255, 70, 71, 72) : const Color.fromARGB(255, 216, 216, 216);
 
-    return Container(
-        decoration: ShapeDecoration(
-            color: isFocused ? buttonBackgroundColor : focusedColor,
-            shape: RoundedSuperellipseBorder(borderRadius: BorderRadius.circular(18)),
-            shadows: [
-          BoxShadow(
-            color: Colors.black.withAlpha(isFocused ? 90 : 0),
-            blurRadius: 30,
-            offset: const Offset(0, 12),
-          )
-        ]),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(300),
-          onTap: () {
-              widget.onPressed?.call();
-          },
-          
-        child: LiquidGlassPannel(
-          blurred: false,
-          borderRadius: 18,
-          backgroundColor: Colors.transparent,
-          roundedCornerMode: "continuous",
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                      ((buttonBackgroundColor.r) + (buttonBackgroundColor.g) + (buttonBackgroundColor.b) ) / 3 > 0.5 ?
-                         Colors.black : Colors.white, BlendMode.srcIn), 
-                    child: widget.child,),
-          ),
+    return InkWell(
+      borderRadius: BorderRadius.circular(300),
+        onTap: () {
+            widget.onPressed?.call();
+        },
+        
+      child: LiquidGlassPannel(
+        blurred: false,
+        borderRadius: 18,
+        backgroundColor: buttonBackgroundColor,
+        roundedCornerMode: "continuous",
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    ((buttonBackgroundColor.r) + (buttonBackgroundColor.g) + (buttonBackgroundColor.b) ) / 3 > 0.5 ?
+                       Colors.black : Colors.white, BlendMode.srcIn), 
+                  child: widget.child,),
         ),
       ),
     );
