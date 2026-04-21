@@ -21,7 +21,7 @@ import 'package:sharing_option/widgets/liquid_glass_pannel.dart';
 import 'native_functions/headerbar_sizes.dart';
 import 'package:sharing_option/pages/config.dart';
 import 'package:window_manager/window_manager.dart';
-import 'buttons.dart';
+import 'widgets/buttons.dart';
 import 'window_captions.dart';
 import 'yaru_title_bar_gesture_detector.dart';
 import 'pages/home.dart';
