@@ -2,8 +2,6 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:sharing_option/widgets/buttons.dart';
 import 'package:sharing_option/constants/current_platform.dart';
-import 'package:sharing_option/pages/home.dart';
-import 'package:sharing_option/widgets/accent_buttons.dart';
 import 'package:sharing_option/widgets/liquid_glass_pannel.dart';
 
 class PlatformThemedRoute {
@@ -46,6 +44,7 @@ class PlatformThemedSidebar extends StatelessWidget {
             child: LiquidGlassPannel(
               blurred: smallSidebar,
               continuousBorder: true,
+              borderRadius: 18,
               visible: isLiquidGlass,
               child:  Padding(
                 padding: const EdgeInsets.all(8.0),

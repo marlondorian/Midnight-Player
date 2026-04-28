@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:sharing_option/constants/current_platform.dart';
 import 'package:sharing_option/widgets/liquid_glass_pannel.dart';
 import 'package:window_manager/window_manager.dart';
 
 
 class PlatformThemedToolbarButton extends StatelessWidget {
   const PlatformThemedToolbarButton({super.key, this.onPressed, this.child});
-   final String platform = "MacOS";
    final void Function()? onPressed;
   final Widget? child;
 
 
   @override
   Widget build(BuildContext context) {
-    return switch (platform) {
-      "MacOS" => TahoeToolbarButton(onPressed: onPressed, child: child),
-      "Windows" => WinUiToolbarButton(onPressed: onPressed, child: child),
-      "Linux" => LibadwaitaToolbarButton(onPressed: onPressed, child: child),
-      _ => WinUiToolbarButton(onPressed: onPressed, child: child)
-    };
+    return 
+      isMacOS ? TahoeToolbarButton(onPressed: onPressed, child: child) :
+      isWindows ? WinUiToolbarButton(onPressed: onPressed, child: child) :
+      isLinux ? LibadwaitaToolbarButton(onPressed: onPressed, child: child)
+      : WinUiToolbarButton(onPressed: onPressed, child: child);
+    
   }
 }
 

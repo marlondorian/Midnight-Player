@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:flutter_acrylic/widgets/transparent_macos_sidebar.dart';
 import 'package:provider/provider.dart';
 import 'package:sharing_option/constants/current_platform.dart';
