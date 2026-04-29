@@ -1,6 +1,8 @@
-import 'dart:io' show Platform;
+import 'dart:io' show File, Platform;
 import 'dart:ui';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/foundation.dart' show kIsWeb;
@@ -9,10 +11,14 @@ import 'package:flutter/services.dart';
 // import 'package:flutter_acrylic/flutter_acrylic.dart';
 // import 'package:gtk/gtk.dart';
 import 'package:gtk_theme_fl/gtk_theme_fl.dart';
+import 'package:provider/provider.dart';
 import 'package:sharing_option/configs/config_values.dart';
 import 'package:sharing_option/constants/current_platform.dart';
+import 'package:sharing_option/native_functions/headerbar_sizes.dart';
 import 'package:sharing_option/pages/home.dart';
+import 'package:sharing_option/widgets/accent_buttons.dart';
 import 'package:sharing_option/widgets/toolbar_themed_buttons.dart';
+import 'package:sharing_option/window_captions.dart';
 // import 'package:handy_window/handy_window.dart';
 // import 'package:libadwaita_searchbar/libadwaita_searchbar.dart';
 // import 'package:macos_ui/macos_ui.dart';
@@ -68,7 +74,6 @@ class _CustomStyledScaffoldState extends State<CustomStyledScaffold> {
   }
 
   bool _handleScrollNotification(ScrollNotification notification) {
-    print(notification.metrics.axisDirection);
 
     if (blurRadius != 0 &&
         (notification.metrics.axisDirection == AxisDirection.down ||
@@ -144,6 +149,8 @@ class _CustomStyledScaffoldState extends State<CustomStyledScaffold> {
   double customPixel = 0;
   @override
   Widget build(BuildContext context) {
+    final double rightHeaderWidth = context.select((HeaderbarSizes h) => h.right);
+
     return ClipRRect(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: NestedScrollView(
@@ -239,19 +246,22 @@ class _CustomStyledScaffoldState extends State<CustomStyledScaffold> {
                                           child: Tooltip(
                                             message: 'Collapse sidebar',
                                             child: PlatformThemedToolbarButton(
-                                              child: Icon(Icons.menu),
-                                              onPressed: () { print(operatingSystemVersion);
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(builder: (context) => const MainPage()),);
+                                              child: Text("Xanax", style: TextStyle(color: Colors.white)),
+                                              onPressed: () async{ print(Platform.operatingSystemVersion);
+                                                FilePickerResult? result = await FilePicker.pickFiles();
+
+                                                if (result != null) {
+                                                  File file = File(result.files.single.path!);
+                                                } else {
+                                                  // User canceled the picker
+                                                }
+
                                               
                                               },
                                             ),
                                           ),
                                         ),
-                                        // RightWindowButtonsSpacing(
-                                        //   hideBtnSpacing: top <= 90,
-                                        // )
+                                        SizedBox(width: top <= 90 ? rightHeaderWidth : 0 ,)
                                       ],
                                       centerTitle: true,
                                       // title: AnimatedContainer(

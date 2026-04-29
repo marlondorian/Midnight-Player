@@ -5,7 +5,7 @@ import 'package:window_manager/window_manager.dart';
 
 class PlatformThemedAccentButton extends StatelessWidget {
   const PlatformThemedAccentButton({super.key, this.onPressed, this.child, this.backgroundColor});
-   final String platform = "MacOS";
+   final String platform = "Linux";
    final void Function()? onPressed;
   final Widget? child;
   final Color? backgroundColor;
@@ -252,11 +252,7 @@ class _LibadwaitaAccentButtonState extends State<LibadwaitaAccentButton> with Wi
             },
             child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ColorFiltered(
-                  colorFilter: ColorFilter.mode(
-                    ((buttonBackgroundColor.r) + (buttonBackgroundColor.g) + (buttonBackgroundColor.b) ) / 3 > 0.5 ?
-                       Colors.black : Colors.white, BlendMode.srcIn), 
-                  child: widget.child,),
+                child: widget.child,
             ),
         ),
       ),

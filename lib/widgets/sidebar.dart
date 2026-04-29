@@ -26,6 +26,7 @@ class PlatformThemedSidebar extends StatelessWidget {
     this.currentPage = 0, 
     this.onTap,
     this.changeSidebarWidth,
+    this.backgroundColor = Colors.transparent,
     });
     final double width;
     final bool sidebarShouldBeExtended;
@@ -35,10 +36,12 @@ class PlatformThemedSidebar extends StatelessWidget {
     final int currentPage;
     final void Function(int)? onTap;
     final void Function()? changeSidebarWidth;
+    final Color backgroundColor;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 8.0),
+      color: backgroundColor,
+      padding: isLiquidGlass ? const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 8.0) : EdgeInsets.zero,
           width: width,
           child:LiquidGlassPannel(
             spreadBlur: true,

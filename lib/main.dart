@@ -19,6 +19,7 @@ Future<void> main() async {
 
   if (isWindows || isMacOS || isLinux) {
     await windowManager.ensureInitialized();
+
     WindowOptions(
       minimumSize: const Size(500, 450),
       size: const Size(800, 600),
@@ -46,6 +47,10 @@ Future<void> main() async {
       win.size = Size(initialSize.width - 1, initialSize.height);
       win.size = initialSize;
     });
+  }
+  if (isLinux){
+    // Ensure GTK is initialized before running the app
+    HeaderbarSizes();
   }
 }
 
@@ -347,10 +352,11 @@ int pageIndex = 0;
 
   
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: baseColor,
       body: Stack(
         children: [
             PlatformThemedScaffold(
+              navigationWidgetBackgroundColor: bgColor,
               navigationWidget: PlatformThemedNavigationWidget(
                 currentIndex: pageIndex,
                 onTap: (index){ 

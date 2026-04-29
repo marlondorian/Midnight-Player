@@ -36,10 +36,12 @@ class BodyWithSidebar extends StatefulWidget {
     this.body,
     this.navigationWidget, 
     this.sidebarVisible = true,
+    this.SidebarColor = Colors.transparent,
   });
   final PlatformThemedNavigationWidget? navigationWidget;
   final Widget? body;
   final bool sidebarVisible;
+  final Color SidebarColor;
 
   @override
   State<BodyWithSidebar> createState() => _BodyWithSidebarState();
@@ -108,6 +110,7 @@ class _BodyWithSidebarState extends State<BodyWithSidebar> {
               Visibility(
                 visible: widget.sidebarVisible,
                 child: PlatformThemedSidebar(
+                  backgroundColor: widget.SidebarColor,
                   smallSidebar: smallSidebar,
                     changeSidebarWidth: () {
                       if (MediaQuery.sizeOf(context).width<800){
@@ -169,10 +172,12 @@ class PlatformThemedScaffold extends StatelessWidget {
     this.body,
     this.appBar,
     this.navigationWidget,
+    this.navigationWidgetBackgroundColor = Colors.transparent,
   });
   final Widget? body;
   final PlatformThemedAppBar? appBar;
   final PlatformThemedNavigationWidget? navigationWidget;
+  final Color navigationWidgetBackgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -200,9 +205,15 @@ class PlatformThemedScaffold extends StatelessWidget {
         : Scaffold(
           backgroundColor: Colors.transparent,
             appBar: appBar != null ? AppBar(title: Text(appBar!.title)) : null,
-            body: BodyWithSidebar(body: body,navigationWidget: navigationWidget, sidebarVisible: !isMobile&&navigationWidget != null,),
+            body: BodyWithSidebar(
+              body: body,
+              navigationWidget: navigationWidget, 
+              sidebarVisible: !isMobile&&navigationWidget != null,
+              SidebarColor: navigationWidgetBackgroundColor,
+              ),
             bottomNavigationBar: isMobile
                 ? NavigationBar(
+                  backgroundColor: navigationWidgetBackgroundColor,
                     destinations: navigationWidget!.destinations
                         .map(
                           (e) => NavigationDestination(

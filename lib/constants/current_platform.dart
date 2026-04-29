@@ -10,7 +10,6 @@ bool isLiquidGlass = isMacOS && (operatingSystemVersion >= 26);
 
 double operatingSystemVersion = double.parse("${Platform.operatingSystemVersion.split(" ").elementAt(1).split(".").first}.${Platform.operatingSystemVersion.split(" ").elementAt(1).split(".").elementAt(1)}");
 
-
 int currentPlatform() {
   if(isWindows) return 0;
   if(isMacOS) return 1;
