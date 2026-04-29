@@ -1,11 +1,10 @@
-import 'package:adaptive_platform_ui/adaptive_platform_ui.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sharing_option/widgets/accent_buttons.dart';
 import 'package:sharing_option/yaru_title_bar_gesture_detector.dart';
 import 'custom_styled_scaffold.dart';
 
-
-bool AbraCadabra = true;
 
 class ConfigPage extends StatelessWidget {
   const ConfigPage({super.key});
@@ -31,11 +30,16 @@ class ConfigPage extends StatelessWidget {
                                       color: Colors.blue,
                                       height: 400,
                                     ),
-                                    AdaptiveSwitch(
-                                      value: true,
-                                      onChanged: (value) {
-                                        print('Switch: $value');
+                                    PlatformThemedAccentButton(
+                                      onPressed: () async {
+                                        String? selectedDirectory = await FilePicker.getDirectoryPath();
+
+                                        if (selectedDirectory == null) {
+                                          // User canceled the picker
+                                        }
+                                        print(selectedDirectory);
                                       },
+                                      child: Text("Toggle"),
                                     ),
                                     Container(
                                       color: const Color.fromARGB(255, 20, 212, 49),

@@ -40,67 +40,66 @@ class PlatformThemedSidebar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 8.0),
           width: width,
-          child:Container(
-            child: LiquidGlassPannel(
-              blurred: smallSidebar,
-              continuousBorder: true,
-              borderRadius: 18,
-              visible: isLiquidGlass,
-              child:  Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    AnimatedContainer(
-                      height: !sidebarShouldBeExtended ? 28 : 0,
+          child:LiquidGlassPannel(
+            spreadBlur: true,
+            blurred: smallSidebar,
+            continuousBorder: true,
+            borderRadius: 18,
+            visible: isLiquidGlass,
+            child:  Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  AnimatedContainer(
+                    height: !sidebarShouldBeExtended ? 28 : 0,
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: AnimatedContainer(
                       duration: const Duration(milliseconds: 400),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 400),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                        margin: EdgeInsets.only(bottom: 4.0),
-                        constraints: BoxConstraints(
-                          maxWidth: sidebarShouldBeExtended ? 34 : 200,
-                        ),
-                        height: 34,
-                        child: MaterialButton(
-                          splashColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)
-                          ),
-                          padding: EdgeInsets.zero,
-                          child: Center(child: Icon(FluentIcons.navigation_16_regular,size: 20,)),
-                          onPressed: (){
-                            if(changeSidebarWidth != null){
-                              changeSidebarWidth!();
-                            }},
-                          ),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                      margin: EdgeInsets.only(bottom: 4.0),
+                      constraints: BoxConstraints(
+                        maxWidth: sidebarShouldBeExtended ? 34 : 200,
                       ),
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                          itemCount: routes.length,
-                          itemBuilder: (context, index) {
-                            final route = routes[index];
-                            return SidebarCtrls(
-                              onTap: onTap,
-                              currentPage: currentPage,
-                              page: index,
-                              text: route.name,
-                              extendedSidebar: sidebarShouldBeExtended,
-                              icon: route.icon,
-                              filledIcon: route.filledIcon,
-                            );
-                          },
+                      height: 34,
+                      child: MaterialButton(
+                        splashColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                        ),
+                        padding: EdgeInsets.zero,
+                        child: Center(child: Icon(FluentIcons.navigation_16_regular,size: 20,)),
+                        onPressed: (){
+                          if(changeSidebarWidth != null){
+                            changeSidebarWidth!();
+                          }},
                         ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: routes.length,
+                        itemBuilder: (context, index) {
+                          final route = routes[index];
+                          return SidebarCtrls(
+                            onTap: onTap,
+                            currentPage: currentPage,
+                            page: index,
+                            text: route.name,
+                            extendedSidebar: sidebarShouldBeExtended,
+                            icon: route.icon,
+                            filledIcon: route.filledIcon,
+                          );
+                        },
+                      ),
+                  ),
+                ],
               ),
-              ),
-          ),
+            ),
+            ),
     );
   }
 }

@@ -15,6 +15,7 @@ class LiquidGlassPannel extends StatefulWidget {
     this.continuousBorder = false,
     this.visible = true,
     this.borderColor,
+    this.spreadBlur = false,
 
   });
   final Widget? child;
@@ -26,6 +27,7 @@ class LiquidGlassPannel extends StatefulWidget {
   final bool continuousBorder;
   final bool visible;
   final Color? borderColor;
+  final bool spreadBlur;
   @override
   State<LiquidGlassPannel> createState() => _LiquidGlassPannelState();
 }
@@ -85,6 +87,7 @@ class _LiquidGlassPannelState extends State<LiquidGlassPannel>
         : const Color.fromARGB(219, 255, 255, 255));
 
     return widget.visible ? LiquidGlassAttempt(
+        spreadBlur: widget.spreadBlur,
         isFocused: isFocused,
         blurred: widget.blurred,
         roundedCornerMode: widget.roundedCornerMode,
@@ -214,12 +217,14 @@ class LiquidGlassAttempt extends StatelessWidget {
     this.borderRadius = 20,
     this.blurred = true,
     this.isFocused = true,
+    this.spreadBlur = false,
   });
   final Widget child;
   final String roundedCornerMode;
   final double borderRadius;
   final bool blurred;
   final bool isFocused;
+  final bool spreadBlur;
 
   @override
   Widget build(BuildContext context) {
@@ -321,15 +326,15 @@ class LiquidGlassAttempt extends StatelessWidget {
         ),
 
 
+        
         Visibility(
-          visible: isFocused,
+          visible: isFocused&&spreadBlur,
           child:  Positioned.fill(
               child:Opacity(
-                opacity: 0.5,
+                opacity: 0.4,
                 child: Container(
                 clipBehavior: Clip.antiAlias,
                 decoration: ShapeDecoration(
-                  color: Colors.transparent,
                   shape: roundedCornerMode == "continuous"
                       ? RoundedSuperellipseBorder(
                           borderRadius: BorderRadius.circular(borderRadius),
@@ -342,12 +347,12 @@ class LiquidGlassAttempt extends StatelessWidget {
                 ),
             child: BackdropFilter(
                 filter: .blur(sigmaX: 100, sigmaY: 100),
+                child: SizedBox(),
                 ),
               ),
             ),
           ),
         ),
-
 
         Container(
             clipBehavior: Clip.antiAlias,
@@ -366,7 +371,11 @@ class LiquidGlassAttempt extends StatelessWidget {
           child: BackdropFilter(
               filter: .blur(sigmaX: blurred? 4 : 0, sigmaY: blurred? 4 : 0),
               
-              child: child),)
+              child: child),),
+
+
+      
+      
       ],
     );
   }
