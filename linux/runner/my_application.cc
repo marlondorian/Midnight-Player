@@ -79,7 +79,7 @@ static void set_overlays_visible(gboolean visible) {
 
 static void apply_custom_css(GtkWidget* window, GtkWidget* left_header, GtkWidget* right_header) {
   const char* css_data =
-      "headerbar { background: transparent; border: 0; min-height:46px;box-shadow:none; }"
+      "headerbar { background: transparent; border: 0; min-height:52px;box-shadow:none; }"
       "headerbar.left.top { padding-right:0; }"
       "window { background: transparent;}"
       "headerbar.right.top { padding-left:0; }"
